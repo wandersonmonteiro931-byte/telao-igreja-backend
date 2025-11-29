@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: telao-igreja-backend
+    runtime: node
+    plan: free
+    buildCommand: npm install --include=dev && npx vite build && mkdir -p server/public && cp -r dist/* server/public/ && npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: ADMIN_USERNAME
+        sync: false
+    healthCheckPath: /api/health
