@@ -3,9 +3,12 @@ services:
     name: telao-igreja-backend
     runtime: node
     plan: free
+
     buildCommand: npm install && npm run build
-    startCommand: npm start
+    startCommand: node dist/server/index.js
+
     healthCheckPath: /api/health
+
     envVars:
       - key: NODE_ENV
         value: production
@@ -13,8 +16,10 @@ services:
         generateValue: true
       - key: REFRESH_SECRET
         generateValue: true
+
       - key: ALLOWED_ORIGINS
-        sync: false
+        value: "*"
+
       - key: ADMIN_EMAIL
         sync: false
       - key: ADMIN_PASSWORD
