@@ -914,3 +914,52 @@ export class FileStorage implements IStorage {
 const useFileStorage = true;
 console.log(useFileStorage ? "Using file-based storage" : "Using in-memory storage");
 export const storage: IStorage = useFileStorage ? new FileStorage() : new MemStorage();
+// ============================
+//   STORAGE.ts — Parte 4/5
+//   Helpers internos
+// ============================
+
+// Garante que diretórios/arquivos não bugam no Render
+function safeReadJSON<T>(file: string, fallback: T): T {
+  try {
+    if (!fs.existsSync(file)) return fallback;
+    const raw = fs.readFileSync(file, "utf-8");
+    return JSON.parse(raw);
+  } catch (e) {
+    console.error("Erro ao ler JSON:", file, e);
+    return fallback;
+  }
+}
+
+function safeWriteJSON(file: string, data: any): void {
+  try {
+    fs.writeFileSync(file, JSON.stringify(data, null, 2), "utf-8");
+  } catch (e) {
+    console.error("Erro ao gravar JSON:", file, e);
+  }
+}
+
+// Função utilitária:
+export function ensureNumber(value: any, fallback: number = 1): number {
+  const n = Number(value);
+  return isNaN(n) ? fallback : n;
+}
+
+// Garante que a data seja Date
+export function parseDate(value: any): Date | null {
+  try {
+    const d = new Date(value);
+    return isNaN(d.getTime()) ? null : d;
+  } catch {
+    return null;
+  }
+}
+// ============================
+//   STORAGE.ts — Parte 5/5
+//   Inicialização automática do Storage
+// ============================
+
+// Inicializa automaticamente assim que o backend subir
+await storage.init();
+
+console.log("Storage inicializado com sucesso!");
