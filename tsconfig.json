@@ -1,34 +1,17 @@
 {
   "compilerOptions": {
     "target": "ES2021",
-    "module": "ES2020",
+    "module": "ES2022",
     "moduleResolution": "node",
-
     "rootDir": ".",
     "outDir": "dist",
-
     "strict": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-
     "types": ["node"],
-    "resolveJsonModule": true,
-
-    "allowJs": false,
-    "emitDecoratorMetadata": false,
-    "declaration": false,
-
-    "noImplicitAny": false,
-
-    "allowSyntheticDefaultImports": true,
-
-    "verbatimModuleSyntax": false,
-
-    "outDir": "dist",
-    "sourceMap": false
+    "resolveJsonModule": true
   },
-
   "include": ["server/**/*", "shared/**/*"],
   "exclude": ["node_modules", "dist"]
 }
