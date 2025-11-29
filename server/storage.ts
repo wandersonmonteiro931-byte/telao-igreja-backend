@@ -1,3 +1,29 @@
+// TIPOS QUE O TYPESCRIPT ESTÁ RECLAMANDO
+interface StorageData {
+  users: User[];
+  nextUserId: number;
+}
+
+interface LoginAttemptsData {
+  attempts: LoginAttempt[];
+  nextAttemptId: number;
+}
+
+interface AnnouncementsData {
+  announcements: Announcement[];
+  nextAnnouncementId: number;
+}
+
+interface UserSettingsData {
+  settings: UserSettings[];
+  nextSettingsId: number;
+}
+
+interface SupportTicketsData {
+  tickets: SupportTicket[];
+  nextTicketId: number;
+}
+
 // ============================
 //   STORAGE.ts — Parte 1/5
 // ============================
