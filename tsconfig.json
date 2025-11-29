@@ -1,15 +1,17 @@
 {
-  "include": ["server/**/*", "shared/**/*"],
-  "exclude": ["node_modules", "dist"],
   "compilerOptions": {
-    "module": "ESNext",
     "target": "ES2020",
+    "module": "ES2020",
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "rootDir": ".",
     "strict": true,
-    "lib": ["esnext"],
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "moduleResolution": "bundler",
-    "outDir": "./dist",
-    "rootDir": "."
-  }
+    "forceConsistentCasingInFileNames": true,
+
+    "types": ["node"],
+    "lib": ["ES2020"]
+  },
+  "include": ["server/**/*"]
 }
