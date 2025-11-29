@@ -1,20 +1,22 @@
 import express from "express";
 import cors from "cors";
-import registerRoutes from "./routes.js"; // 👈 IMPORTAÇÃO CORRETA
-import { createServer } from "http";
+import { registerRoutes } from "./routes.js";
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 
-async function start() {
-  const httpServer = await registerRoutes(app);
+app.use(express.json({ limit: "10mb" }));
 
-  const PORT = process.env.PORT || 3000;
-  httpServer.listen(PORT, () => {
+const PORT = process.env.PORT || 3000;
+
+registerRoutes(app).then((server) => {
+  server.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
   });
-}
-
-start();
+});
