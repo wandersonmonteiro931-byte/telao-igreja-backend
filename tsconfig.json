@@ -3,7 +3,7 @@
     "target": "ES2021",
     "module": "ES2020",
     "moduleResolution": "node",
-    "rootDir": "server",
+    "rootDir": ".",
     "outDir": "dist",
     "strict": false,
     "esModuleInterop": true,
@@ -12,6 +12,6 @@
     "types": ["node"],
     "resolveJsonModule": true
   },
-  "include": ["server/**/*"],
+  "include": ["server/**/*", "shared/**/*"],
   "exclude": ["node_modules", "dist"]
 }
